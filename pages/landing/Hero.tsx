@@ -4,11 +4,6 @@ import TiltCard from "@/components/Cards/TiltCard";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import TextGenerateEffect from "@/components/Animations/TextGenerateEffect";
 
-// asdfsadfasedfasdfasdf
-// asdfsadfasedfasdfasdf
-// asdfsadfasedfasdfasdf
-// asdfsadfasedfasdfasdf
-
 const Hero = () => {
   const myPhotoRef = useRef(null);
 
