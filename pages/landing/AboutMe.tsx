@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, use } from "react";
 import { motion, useInView } from "framer-motion";
 import Reveal from "../../components/Animations/Reveal";
 import { TracingBeam } from "../../components/ui/TracingBeam";
+import useWindowSize from "@/hooks/useWindowSize";
 
 const AboutMe = () => {
   const [position, setPosition] = useState("");
@@ -23,10 +24,12 @@ const AboutMe = () => {
     visible: { opacity: 1, y: 0 },
   };
 
+  const { width } = useWindowSize();
+
   return (
     <section className="h-max w-[100dvw] overflow-hidden bg-black-500 max-sm:pb-10">
       <div className="container h-full">
-        {window?.innerWidth < 768 ? (
+        {width && width < 768 ? (
           <TracingBeam>
             <div className="">
               <motion.h2
@@ -35,15 +38,14 @@ const AboutMe = () => {
                 animate={isInView ? "visible" : "hidden"}
                 transition={{ duration: 1, ease: "easeIn" }}
                 ref={ref}
-                className="pt-20 text-4xl text-white"
+                className="z-500 relative pt-20 text-4xl text-white"
               >
                 Обо мне
               </motion.h2>
 
               {/* Я студент мобильная версия */}
-
               <div className="md:hidden">
-                <Reveal coveringBox={window?.innerWidth < 768 ? false : true}>
+                <Reveal coveringBox={width < 768 ? false : true} width={width}>
                   <p className="mt-20 font-secondary text-2xl">
                     Меня зовут Владислав, я студент Иркутского Политехнического
                     Университета, где обучаюсь на англоязычной программе <br />
@@ -55,7 +57,7 @@ const AboutMe = () => {
               </div>
 
               <div className="mt-20 flex flex-col gap-11 font-secondary text-2xl font-normal max-sm:mt-16">
-                <Reveal coveringBox={window?.innerWidth < 768 ? false : true}>
+                <Reveal coveringBox={width < 768 ? false : true} width={width}>
                   <p>
                     Моя страсть — создавать{" "}
                     <span className="font-main text-yellow">
@@ -63,7 +65,7 @@ const AboutMe = () => {
                     </span>
                   </p>
                 </Reveal>
-                <Reveal coveringBox={window?.innerWidth < 768 ? false : true}>
+                <Reveal coveringBox={width < 768 ? false : true} width={width}>
                   <p>
                     Я обладаю глубоким пониманием таких фреймворков и
                     инструментов, как
@@ -74,7 +76,7 @@ const AboutMe = () => {
                     </span>{" "}
                   </p>
                 </Reveal>
-                <Reveal coveringBox={window?.innerWidth < 768 ? false : true}>
+                <Reveal coveringBox={width < 768 ? false : true} width={width}>
                   <p className="md:ml-20">
                     Мои знания и навыки не ограничиваются техническими
                     аспектами.
@@ -92,7 +94,7 @@ const AboutMe = () => {
                     быстро адаптироваться к новым задачам.
                   </p>
                 </Reveal>
-                <Reveal coveringBox={window?.innerWidth < 768 ? false : true}>
+                <Reveal coveringBox={width < 768 ? false : true} width={width}>
                   <p className="md:ml-40">
                     Я открыт к новым вызовам и готов вкладывать все свои знания
                     <br /> и опыт в проекты, чтобы создавать{" "}
@@ -180,7 +182,7 @@ const AboutMe = () => {
             {/* Я студент мобильная версия */}
 
             <div className="md:hidden">
-              <Reveal coveringBox={window?.innerWidth < 768 ? false : true}>
+              <Reveal coveringBox={width < 768 ? false : true} width={width}>
                 <p className="mt-20 font-secondary text-2xl">
                   Меня зовут Владислав, я студент Иркутского Политехнического
                   Университета, где обучаюсь на англоязычной программе <br />
@@ -192,7 +194,7 @@ const AboutMe = () => {
             </div>
 
             <div className="mt-20 flex flex-col gap-11 font-secondary text-2xl font-normal max-sm:mt-16">
-              <Reveal coveringBox={window?.innerWidth < 768 ? false : true}>
+              <Reveal coveringBox={width < 768 ? false : true} width={width}>
                 <p>
                   Моя страсть — создавать{" "}
                   <span className="font-main text-yellow">
@@ -200,20 +202,17 @@ const AboutMe = () => {
                   </span>
                 </p>
               </Reveal>
-              <Reveal coveringBox={window?.innerWidth < 768 ? false : true}>
+              <Reveal coveringBox={width < 768 ? false : true} width={width}>
                 <p>
-                  Я обладаю глубоким пониманием фреймворков и<br />{" "}
-                  инструментов, таких как
+                  Я обладаю глубоким пониманием таких фреймворков и<br />{" "}
+                  инструментов, как
                   <span className="font-main text-yellow">
                     {" "}
-                    React, Next.js, Tailwind CSS,
-                    <br />
-                  </span>{" "}
-                  и стремлюсь выходить на новый уровень, осваивая React
-                  <br /> Native для создания мобильных приложений.
+                    React, React Native, Next.js, Tailwind CSS.
+                  </span>
                 </p>
               </Reveal>
-              <Reveal coveringBox={window?.innerWidth < 768 ? false : true}>
+              <Reveal coveringBox={width < 768 ? false : true} width={width}>
                 <p className="md:ml-20">
                   Мои знания и навыки не ограничиваются техническими аспектами.
                   <br />
@@ -230,7 +229,7 @@ const AboutMe = () => {
                   быстро адаптироваться к новым задачам.
                 </p>
               </Reveal>
-              <Reveal coveringBox={window?.innerWidth < 768 ? false : true}>
+              <Reveal coveringBox={width < 768 ? false : true} width={width}>
                 <p className="md:ml-40">
                   Я открыт к новым вызовам и готов вкладывать все свои знания
                   <br /> и опыт в проекты, чтобы создавать{" "}

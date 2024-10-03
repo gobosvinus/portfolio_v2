@@ -33,7 +33,7 @@ const Hero = () => {
       {/* Задний фон из активных плиток с лучами (опционально)*/}
       <TileBackground
         REC_SIZE={32}
-        activeTiles={window?.innerWidth < 768 ? false : true}
+        // activeTiles={window?.innerWidth < 768 ? false : true}
       />
 
       {/* Градиент фоновый слой */}

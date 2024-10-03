@@ -56,7 +56,7 @@ const Services = () => {
         />
 
         {/* На мобильных устройствах */}
-        {/* <TinderCards /> */}
+        <TinderCards />
       </motion.div>
     </section>
   );

@@ -1,10 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import SpinningLogos from "../ui/SpinningLogos";
 import { motion, useInView } from "framer-motion";
+import useWindowSize from "@/hooks/useWindowSize";
 
 const CompetencesGrid = () => {
   const ref = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(ref, { once: true, amount: "all" });
+
+  const { width } = useWindowSize();
 
   const variantsLeft = {
     initial: {
@@ -14,7 +17,7 @@ const CompetencesGrid = () => {
       translateY: "50%",
     },
     final: {
-      left: window?.innerWidth < 768 ? "-19%" : "-15%", // max-lg: 18%
+      left: width && width < 768 ? "-19%" : "-15%", // max-lg: 18%
       bottom: "-25%",
       translateX: "0",
       translateY: "0",
@@ -29,7 +32,7 @@ const CompetencesGrid = () => {
       translateY: "-50%",
     },
     final: {
-      right: window?.innerWidth < 768 ? "-19%" : "-15%", // max-lg: 18%
+      right: width && width < 768 ? "-19%" : "-15%", // max-lg: 18%
       top: "-25%",
       translateX: "0",
       translateY: "0",

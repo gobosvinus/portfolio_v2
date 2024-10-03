@@ -10,11 +10,9 @@ import { motion } from "framer-motion";
 const TileBackground = ({
   REC_SIZE = 50,
   beams = true,
-  activeTiles = true,
 }: {
   REC_SIZE: number;
   beams?: boolean;
-  activeTiles?: boolean;
 }) => {
   // Use custom Hook to get up-to-date sizes of the viewport
   const { width, height } = useWindowSize();
@@ -22,6 +20,10 @@ const TileBackground = ({
   // get number of cols and rows and then the amount of recs
   const cols = width ? Math.floor(width / REC_SIZE) : 0;
   const rows = height ? Math.floor(height / REC_SIZE) : 0;
+
+  // Рассчитываем фактический размер клетки на основе ширины экрана
+  const actualRecSize = width ? width / cols : REC_SIZE;
+
   const totalTiles = cols * rows;
 
   // make the array to iterate through to build the background.
@@ -37,6 +39,8 @@ const TileBackground = ({
         display: "grid",
         gridTemplateColumns: `repeat(auto-fit, minmax(${REC_SIZE}px, 1fr))`,
         gridTemplateRows: `repeat(auto-fit, minmax(${REC_SIZE}px, 1fr))`,
+        // gridTemplateColumns: `repeat(${cols}, ${REC_SIZE}px)`,
+        // gridTemplateRows: `repeat(${rows}, ${REC_SIZE}px)`,
         width: "100dvw",
         height: "100dvh",
         position: "absolute",
@@ -44,12 +48,16 @@ const TileBackground = ({
       }}
     >
       {tiles.map((_, index) => (
-        <Tile key={index} id={index} activeTiles={activeTiles} />
+        <Tile
+          key={index}
+          id={index}
+          activeTiles={window?.innerWidth < 768 ? false : true}
+        />
       ))}
 
       {/* Опционально лучи */}
       {beams && (
-        <Beams BOX_SIZE={REC_SIZE} columnNumber={cols} rowNumber={rows} />
+        <Beams BOX_SIZE={actualRecSize} columnNumber={cols} rowNumber={rows} />
       )}
     </div>
   );
@@ -81,157 +89,135 @@ const Beams = ({
 }) => {
   const positions = [
     {
-      top: rowNumber * BOX_SIZE * 0.1,
-      left: BOX_SIZE * Math.floor(columnNumber * 0.25),
+      top: BOX_SIZE * 0.15, // верхняя часть
+      left: BOX_SIZE * Math.floor(columnNumber * 0.2),
       transition: {
         duration: 2,
         ease: "easeInOut",
         repeat: Infinity,
-        repeatDelay: 1,
-        delay: 0.5,
+        repeatDelay: 6, // увеличена пауза
+        delay: 1,
       },
     },
     {
-      top: rowNumber * BOX_SIZE * 0.3,
+      top: BOX_SIZE * 0.35, // верхняя часть
       left: BOX_SIZE * Math.floor(columnNumber * 0.65),
       transition: {
         duration: 2.5,
         ease: "easeInOut",
         repeat: Infinity,
-        repeatDelay: 1.2,
-        delay: 0.7,
+        repeatDelay: 8, // увеличена пауза
+        delay: 3, // изменено
       },
     },
     {
-      top: rowNumber * BOX_SIZE * 0.5,
+      top: BOX_SIZE * 0.5, // верхняя часть
       left: BOX_SIZE * Math.floor(columnNumber * 0.45),
       transition: {
         duration: 3,
         ease: "easeInOut",
         repeat: Infinity,
-        repeatDelay: 0.8,
-        delay: 1,
+        repeatDelay: 7,
+        delay: 2,
       },
     },
     {
-      top: rowNumber * BOX_SIZE * 0.7,
-      left: BOX_SIZE * Math.floor(columnNumber * 0.15),
+      top: BOX_SIZE * Math.floor(rowNumber * 0.7), // нижняя часть
+      left: BOX_SIZE * Math.floor(columnNumber * 0.1),
       transition: {
         duration: 4,
         ease: "easeInOut",
         repeat: Infinity,
-        repeatDelay: 1.5,
-        delay: 0.5, // перекликается с первым
+        repeatDelay: 9,
+        delay: 4, // изменено
       },
     },
     {
-      top: rowNumber * BOX_SIZE * 0.9,
+      top: BOX_SIZE * Math.floor(rowNumber * 0.45), // нижняя часть
       left: BOX_SIZE * Math.floor(columnNumber * 0.75),
       transition: {
         duration: 3.5,
         ease: "easeInOut",
         repeat: Infinity,
-        repeatDelay: 1.3,
-        delay: 1.2,
+        repeatDelay: 10,
+        delay: 5, // изменено
       },
     },
     {
-      top: rowNumber * BOX_SIZE * 1.1,
+      top: BOX_SIZE * Math.floor(rowNumber * 0.77), // нижняя часть
       left: BOX_SIZE * Math.floor(columnNumber * 0.35),
       transition: {
         duration: 3,
         ease: "easeInOut",
         repeat: Infinity,
-        repeatDelay: 2,
-        delay: 0.7, // перекликается с вторым
+        repeatDelay: 11,
+        delay: 6, // изменено
       },
     },
     {
-      top: rowNumber * BOX_SIZE * 1.3,
+      top: BOX_SIZE * Math.floor(rowNumber * 0.8), // нижняя часть
       left: BOX_SIZE * Math.floor(columnNumber * 0.85),
       transition: {
         duration: 2.8,
         ease: "easeInOut",
         repeat: Infinity,
-        repeatDelay: 1.7,
-        delay: 1.5,
+        repeatDelay: 12,
+        delay: 7, // изменено
       },
     },
     {
-      top: rowNumber * BOX_SIZE * 1.5,
+      top: BOX_SIZE * Math.floor(rowNumber * 0.45), // нижняя часть
       left: BOX_SIZE * Math.floor(columnNumber * 0.5),
       transition: {
         duration: 3.2,
         ease: "easeInOut",
         repeat: Infinity,
-        repeatDelay: 1,
-        delay: 1.2, // перекликается с пятым
+        repeatDelay: 13,
+        delay: 8, // изменено
       },
     },
     {
-      top: rowNumber * BOX_SIZE * 1.7,
+      top: BOX_SIZE * Math.floor(rowNumber * 0.55), // нижняя часть
       left: BOX_SIZE * Math.floor(columnNumber * 0.95),
       transition: {
         duration: 2.6,
         ease: "easeInOut",
         repeat: Infinity,
-        repeatDelay: 1.8,
-        delay: 0.9,
+        repeatDelay: 9, // увеличена пауза
+        delay: 3.5,
       },
     },
     {
-      top: rowNumber * BOX_SIZE * 0.1,
-      left: BOX_SIZE * Math.floor(columnNumber * 0.75),
-      transition: {
-        duration: 2,
-        ease: "easeInOut",
-        repeat: Infinity,
-        repeatDelay: 1,
-        delay: 0.6, // уникальный
-      },
-    },
-    {
-      top: rowNumber * BOX_SIZE * 5,
+      top: BOX_SIZE * Math.floor(rowNumber * 0.4), // нижняя часть
       left: BOX_SIZE * Math.floor(columnNumber * 0.25),
-      transition: {
-        duration: 2,
-        ease: "easeInOut",
-        repeat: Infinity,
-        repeatDelay: 1,
-        delay: 0.6, // уникальный
-      },
-    },
-    {
-      top: rowNumber * BOX_SIZE * 3,
-      left: BOX_SIZE * Math.floor(columnNumber * 0.75),
-      transition: {
-        duration: 2,
-        ease: "easeInOut",
-        repeat: Infinity,
-        repeatDelay: 1,
-        delay: 0.6, // уникальный
-      },
-    },
-    {
-      top: rowNumber * BOX_SIZE * 0.3,
-      left: BOX_SIZE * Math.floor(columnNumber * 0.85),
       transition: {
         duration: 2.5,
         ease: "easeInOut",
         repeat: Infinity,
-        repeatDelay: 1.2,
-        delay: 1.3,
+        repeatDelay: 12,
+        delay: 6.5,
       },
     },
     {
-      top: rowNumber * BOX_SIZE * 0.5,
-      left: BOX_SIZE * Math.floor(columnNumber * 0.95),
+      top: BOX_SIZE * Math.floor(rowNumber * 0.5), // нижняя часть
+      left: BOX_SIZE * Math.floor(columnNumber * 0.75),
       transition: {
-        duration: 3,
+        duration: 2.5,
         ease: "easeInOut",
         repeat: Infinity,
-        repeatDelay: 0.8,
-        delay: 1, // перекликается с третьим
+        repeatDelay: 13,
+        delay: 7.5,
+      },
+    },
+    {
+      top: BOX_SIZE * Math.floor(rowNumber * 0.6), // нижняя часть
+      left: BOX_SIZE * Math.floor(columnNumber * 0.95),
+      transition: {
+        duration: 2.5,
+        ease: "easeInOut",
+        repeat: Infinity,
+        repeatDelay: 11,
+        delay: 5.5,
       },
     },
   ];

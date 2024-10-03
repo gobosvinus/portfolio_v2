@@ -5,15 +5,17 @@ const Reveal = ({
   children,
   coveringBox = true,
   delay = 0.25,
+  width,
 }: {
   children: React.ReactNode;
   delay?: number;
   coveringBox?: boolean;
+  width: number;
 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, {
     once: true,
-    amount: window?.innerWidth < 768 ? 0.5 : "all",
+    amount: width < 768 ? 0.5 : "all",
   });
 
   const variants: Variants = {
@@ -44,7 +46,7 @@ const Reveal = ({
 
       {coveringBox && (
         <motion.div
-          variants={window?.innerWidth < 768 ? variantsBoxMobile : variantBox}
+          variants={width < 768 ? variantsBoxMobile : variantBox}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           transition={{ duration: 1.5, ease: "easeIn" }}
