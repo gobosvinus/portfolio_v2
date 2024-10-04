@@ -25,7 +25,7 @@ const Hero = () => {
 
   return (
     <div
-      className="relative h-screen w-[100dvw] overflow-hidden"
+      className="relative h-screen w-screen overflow-hidden"
       style={{
         boxShadow: "0 50px 75px -12px rgb(0 0 0 / 0.25)",
       }}

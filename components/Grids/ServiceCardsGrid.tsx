@@ -64,6 +64,7 @@ const ServiceCardsGrid = ({
               title={card.title}
               description={card.description}
               url={card.url}
+              src={card.src}
             />
           </motion.div>
         );

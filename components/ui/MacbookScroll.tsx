@@ -90,7 +90,7 @@ const MacbookScroll = ({
   return (
     <div
       ref={ref}
-      className="relative flex flex-shrink-0 scale-[0.35] transform flex-col items-center justify-start py-0 [perspective:1200px] max-sm:[perspective:800px] sm:scale-50 md:min-h-[175vh] md:scale-100 md:py-80"
+      className="relative flex w-full flex-shrink-0 scale-[0.35] transform flex-col items-center justify-start py-0 [perspective:1200px] max-sm:[perspective:800px] sm:scale-50 md:min-h-[175vh] md:scale-100 md:py-80"
     >
       <motion.h2
         style={{

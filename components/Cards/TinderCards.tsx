@@ -1,19 +1,20 @@
 import React, { Dispatch, SetStateAction, useState, useEffect } from "react";
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import Image from "next/image";
-import { UPDATED_SERVICE_CARDS_DATA } from "@/data/static";
+import { UPDATED_SERVICE_CARDS_DATA_MOBILE } from "@/data/static";
 import { UpdatedServiceCardData } from "@/types/types.config";
 import Loader from "../ui/Loader";
+import Link from "next/link";
 
 const TinderCards = () => {
   const [cards, setCards] = useState<UpdatedServiceCardData[]>(
-    UPDATED_SERVICE_CARDS_DATA,
+    UPDATED_SERVICE_CARDS_DATA_MOBILE,
   );
 
   useEffect(() => {
     const handleEffect = () => {
       if (cards.length === 0) {
-        setCards(UPDATED_SERVICE_CARDS_DATA);
+        setCards(UPDATED_SERVICE_CARDS_DATA_MOBILE);
       }
     };
 
@@ -25,7 +26,7 @@ const TinderCards = () => {
   }, [cards]);
 
   return (
-    <div className="absolute left-1/2 top-[55%] grid h-max w-full -translate-x-1/2 -translate-y-1/2 place-items-center md:hidden">
+    <div className="absolute left-1/2 top-[55%] grid h-max min-h-full w-full -translate-x-1/2 -translate-y-1/2 place-items-center md:hidden">
       {cards.map((card) => {
         return (
           <Card
@@ -35,6 +36,7 @@ const TinderCards = () => {
             {...card}
             title={card.title}
             description={card.description}
+            src={card.src}
           />
         );
       })}
@@ -49,6 +51,7 @@ const Card = ({
   cards,
   title,
   description,
+  src,
 }: {
   id: number;
   url: string;
@@ -56,6 +59,7 @@ const Card = ({
   cards: UpdatedServiceCardData[];
   title: string;
   description: string;
+  src: string;
 }) => {
   const mValue = useMotionValue(0);
 
@@ -117,9 +121,11 @@ const Card = ({
       {id === 2 && <Loader />}
 
       <div className="absolute bottom-0 left-[20px] right-[20px] z-10 flex h-[25%] flex-col gap-4">
-        <h3 className="w-max rounded-[4px] border border-black-600 bg-white p-1 text-xl uppercase text-black-600">
-          {title}
-        </h3>
+        <Link href={src}>
+          <h3 className="w-max rounded-[4px] border border-black-600 bg-white p-1 text-xl uppercase text-black-600 hover:bg-white/90 hover:text-black-600/90">
+            {title}
+          </h3>
+        </Link>
         <p className="font-secondary opacity-70">{description}</p>
       </div>
 

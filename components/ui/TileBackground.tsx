@@ -45,6 +45,7 @@ const TileBackground = ({
         height: "100dvh",
         position: "absolute",
         zIndex: "0",
+        overflow: "hidden",
       }}
     >
       {tiles.map((_, index) => (

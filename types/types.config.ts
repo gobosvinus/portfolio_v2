@@ -57,6 +57,7 @@ type UpdatedServiceCardData = {
   url: string;
   title: string;
   description: string;
+  src: string;
 };
 
 interface InputProps {

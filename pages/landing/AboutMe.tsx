@@ -24,10 +24,10 @@ const AboutMe = () => {
     visible: { opacity: 1, y: 0 },
   };
 
-  const { width } = useWindowSize();
+  const { width = window?.innerWidth } = useWindowSize();
 
   return (
-    <section className="h-max w-[100dvw] overflow-hidden bg-black-500 max-sm:pb-10">
+    <section className="h-max w-screen overflow-hidden bg-black-500 max-sm:pb-10">
       <div className="container h-full">
         {width && width < 768 ? (
           <TracingBeam>

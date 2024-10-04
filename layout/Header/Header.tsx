@@ -27,7 +27,7 @@ const Header = () => {
       initial={{ y: -200 }}
       animate={{ y: 0 }}
       transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
-      className="container pointer-events-none absolute left-0 right-0 top-10 z-50 grid grid-cols-3 items-center py-0 text-xl text-white max-sm:grid-cols-2"
+      className="container pointer-events-none absolute left-0 right-0 top-10 z-50 grid grid-cols-3 items-center overflow-hidden py-0 text-xl text-white max-sm:grid-cols-2"
     >
       <Logo />
 
@@ -69,7 +69,7 @@ export default Header;
 
 export const Logo = () => {
   return (
-    <Link href={""} className="">
+    <Link href={"/"} className="">
       <p className="pointer-events-auto font-main text-lg font-bold md:text-xs lg:text-[18px] xl:text-2xl">
         <span className="text-white">Владислав </span>
         <span className="text-yellow mix-blend-difference">Беденко</span>

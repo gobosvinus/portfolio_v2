@@ -1,23 +1,38 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import ArrowButtonAnimation from "../Animations/ArrowButtonAnimation";
 import Loader from "../ui/Loader";
+import Link from "next/link";
 
 const ServiceCardUpdated = ({
   id,
   url,
   title,
   description,
+  src,
 }: {
   id: number;
   url: string;
   title: string;
   description: string;
+  src: string;
 }) => {
   const [selected, setSelected] = useState<number | null>(null);
   const [isHovered, setIsHovered] = useState<boolean>(false);
+  const [clicked, setClicked] = useState<boolean>(false);
+
+  const buttonRef = useRef<HTMLHeadingElement | null>(null); // правильный тип
+
+  const handleMouseDown = () => {
+    setClicked(true); // Устанавливаем состояние "нажато"
+  };
+
+  const handleMouseUp = () => {
+    setClicked(false); // Сбрасываем состояние после клика
+    console.log("Mouse up, action confirmed");
+  };
 
   return (
     <div
@@ -43,11 +58,13 @@ const ServiceCardUpdated = ({
           <motion.h3
             layout="position"
             transition={{ duration: 0.4 }}
-            className={`${isHovered ? "flex justify-between gap-3" : "flex justify-between"} w-max items-center rounded-[4px] border border-black-600 bg-white p-1 text-xl uppercase text-black-600 hover:cursor-pointer`}
+            className={`${isHovered ? "flex justify-between gap-3" : "flex justify-between"} w-max items-center rounded-[4px] border ${clicked ? "border-black-600/90 bg-white/90" : "border-black-600 bg-white"} p-1 text-xl uppercase text-black-600 hover:cursor-pointer`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
+            ref={buttonRef}
+            onMouseDown={handleMouseDown}
           >
-            {title}
+            <Link href={src}>{title}</Link>
           </motion.h3>
         </div>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { FiBatteryCharging, FiWifi } from "react-icons/fi";
 import ContactMeForm from "../Forms/ContactMeForm";
 import ContactMeModal from "../Modals/ContactMeModal";
@@ -62,6 +62,26 @@ const Screen = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
+  const buttonRef = useRef<HTMLButtonElement>(null); // правильный тип
+
+  const handleTouchEnd = (event: React.TouchEvent) => {
+    const touch = event.changedTouches[0]; // Получаем информацию о позиции пальца
+
+    if (buttonRef.current) {
+      const button = buttonRef.current.getBoundingClientRect(); // Границы кнопки
+
+      // Проверяем, находится ли палец в пределах кнопки
+      if (
+        touch.clientX >= button.left &&
+        touch.clientX <= button.right &&
+        touch.clientY >= button.top &&
+        touch.clientY <= button.bottom
+      ) {
+        openModal(); // вызываем уже существующую функцию
+      }
+    }
+  };
+
   return (
     <div className="relative z-0 grid h-full w-full place-content-center overflow-hidden rounded-[20px] bg-white">
       <span className="text-5xl font-bold text-black-600">
@@ -69,8 +89,10 @@ const Screen = () => {
       </span>
 
       <button
-        className="absolute bottom-4 left-20 right-20 z-10 w-max rounded-lg border-[1px] bg-white py-2 text-xl font-bold text-black-600 backdrop-blur max-sm:-translate-x-3 md:px-1"
-        onClick={openModal}
+        ref={buttonRef}
+        className="absolute bottom-4 left-1/2 z-10 w-max -translate-x-1/2 rounded-lg border-[1px] bg-white px-2 py-2 text-xl font-bold text-black-600 backdrop-blur hover:bg-white/90 hover:text-black-600/90"
+        onClick={openModal} // Можно оставить и для кликов мышкой
+        onTouchEnd={handleTouchEnd}
       >
         Связаться
       </button>

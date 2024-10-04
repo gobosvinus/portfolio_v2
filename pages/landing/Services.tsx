@@ -37,7 +37,7 @@ const Services = () => {
   const y = useTransform(progress, [0.5, 1], ["0", "-50%"]);
 
   return (
-    <section className="h-[110vh] w-[100dvw] bg-black-400">
+    <section className="h-[110vh] w-screen overflow-hidden bg-black-400">
       <motion.div
         className="container relative h-full"
         style={
