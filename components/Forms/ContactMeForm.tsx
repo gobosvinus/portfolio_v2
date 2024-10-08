@@ -10,6 +10,7 @@ import {
 } from "react-hook-form";
 import { InputProps } from "@/types/types.config";
 import { FORM_DATA } from "@/data/static";
+import Loader from "../ui/Loader";
 
 interface FormField {
   firstName: string;
@@ -50,12 +51,50 @@ const ContactMeForm = ({ onClose }: { onClose: () => void }) => {
     formState: { errors },
   } = useForm<FormField>({});
 
-  const onSubmit: SubmitHandler<FormField> = (data) => {};
+  const [loading, setIsLoading] = useState<boolean>(false);
+
+  const onSubmit: SubmitHandler<FormField> = async (data, e) => {
+    e?.preventDefault();
+
+    try {
+      setIsLoading(true); // Устанавливаем индикатор загрузки в true
+      const response = await fetch("/api/submit-form", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          first_name: data.firstName,
+          last_name: data.secondName,
+          phone_number: data.phoneNumber,
+          email: data.email,
+          description: data.description,
+          consent_to_data_processing: data.privacyConsent,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        console.log("Пользователь успешно добавлен:", result);
+        alert("Пользователь успешно добавлен!"); // Уведомление об успешной отправке формы
+        onClose(); // Закрыть форму после успешной отправки
+      } else {
+        console.error("Ошибка при добавлении пользователя:", result.error);
+        alert("Ошибка при добавлении пользователя"); // Уведомление об ошибке
+      }
+    } catch (error) {
+      console.error("Ошибка при отправке формы:", error);
+      alert("Ошибка при отправке формы"); // Уведомление об ошибке
+    } finally {
+      setIsLoading(false); // Устанавливаем индикатор загрузки в false после завершения операции
+    }
+  };
 
   return (
     <motion.form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex size-full flex-col justify-between rounded-2xl bg-black-400 p-10 font-secondary text-white/70 shadow-xl"
+      className="relative flex size-full flex-col justify-between rounded-2xl bg-black-400 p-10 font-secondary text-white/70 shadow-xl"
       action=""
       method="POST"
       initial={{ y: "100%", opacity: 0 }}
@@ -181,9 +220,13 @@ const ContactMeForm = ({ onClose }: { onClose: () => void }) => {
         )}
       </div>
 
-      <button className="w-full rounded-xl bg-black-500 py-3 text-white hover:bg-black-300 hover:text-yellow focus:outline-none focus:ring-1 focus:ring-white/10">
-        Отправить заявку
-      </button>
+      {loading ? (
+        <Loader className="bottom-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+      ) : (
+        <button className="w-full rounded-xl bg-black-500 py-3 text-white hover:bg-black-300 hover:text-yellow focus:outline-none focus:ring-1 focus:ring-white/10">
+          Отправить заявку
+        </button>
+      )}
     </motion.form>
   );
 };

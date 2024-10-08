@@ -1,0 +1,22 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+model User {
+  id                         Int      @id @default(autoincrement())
+  last_name                  String
+  first_name                 String
+  phone_number               String
+  email                      String   @unique
+  description                String?
+  consent_to_data_processing Boolean
+
+    @@map("users") // Это явно указывает Prisma на использование таблицы "users"
+}
