@@ -50,9 +50,7 @@ const ContactMeForm = ({ onClose }: { onClose: () => void }) => {
     formState: { errors },
   } = useForm<FormField>({});
 
-  const onSubmit: SubmitHandler<FormField> = (data) => {
-    console.log(data);
-  };
+  const onSubmit: SubmitHandler<FormField> = (data) => {};
 
   return (
     <motion.form
