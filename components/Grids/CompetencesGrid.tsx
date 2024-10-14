@@ -2,12 +2,14 @@ import React, { useEffect, useRef, useState } from "react";
 import SpinningLogos from "../ui/SpinningLogos";
 import { motion, useInView } from "framer-motion";
 import useWindowSize from "@/hooks/useWindowSize";
+import { useWindowWidth } from "@/context/WindowWidthProvider";
 
 const CompetencesGrid = () => {
   const ref = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(ref, { once: true, amount: "all" });
 
-  const { width } = useWindowSize();
+  // const { width } = useWindowSize();
+  const width = useWindowWidth();
 
   const variantsLeft = {
     initial: {

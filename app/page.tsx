@@ -7,20 +7,23 @@ import PhoneContact from "@/pages/landing/PhoneContact";
 import Services from "@/pages/landing/Services";
 
 import { ReactLenis } from "@studio-freight/react-lenis";
+import { WindowWidthProvider } from "@/context/WindowWidthProvider";
 
 export default function Home() {
   return (
     <main className="font-main text-white">
       <ReactLenis root>
-        <Hero />
+        <WindowWidthProvider>
+          <Hero />
 
-        <Competences />
+          <Competences />
 
-        <Services />
+          <Services />
 
-        <AboutMe />
+          <AboutMe />
 
-        <PhoneContact />
+          <PhoneContact />
+        </WindowWidthProvider>
       </ReactLenis>
     </main>
   );

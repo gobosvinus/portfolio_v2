@@ -1,3 +1,5 @@
+"use client";
+
 import React, { createContext, useContext } from "react";
 import useWindowSize from "@/hooks/useWindowSize";
 
@@ -29,4 +31,15 @@ export const WindowWidthProvider = ({
       {children}
     </WindowWidthContext.Provider>
   );
+};
+
+// Кастомный хук для удобного получения ширины
+export const useWindowWidth = (): number | undefined => {
+  const context = useContext(WindowWidthContext);
+
+  if (context === undefined) {
+    throw new Error("useWindowWidth must be used within a WindowWidthProvider");
+  }
+
+  return context.width;
 };

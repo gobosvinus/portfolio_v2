@@ -40,11 +40,9 @@ const Services = () => {
     <section className="h-[110vh] w-screen overflow-hidden bg-black-400">
       <motion.div
         className="container relative h-full"
-        style={
-          {
-            // y,
-          }
-        }
+        style={{
+          y,
+        }}
       >
         <h2 className="top-0 pb-20 pt-20 text-4xl">Услуги</h2>
 

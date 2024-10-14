@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import useWindowSize from "@/hooks/useWindowSize";
 import { motion } from "framer-motion";
+import { useWindowWidth } from "@/context/WindowWidthProvider";
 
 // Размер плитки
 // const REC_SIZE = 50;
@@ -15,7 +16,9 @@ const TileBackground = ({
   beams?: boolean;
 }) => {
   // Use custom Hook to get up-to-date sizes of the viewport
-  const { width, height } = useWindowSize();
+  // const { width, height } = useWindowSize();
+  const { height } = useWindowSize();
+  const width = useWindowWidth();
 
   // get number of cols and rows and then the amount of recs
   const cols = width ? Math.floor(width / REC_SIZE) : 0;

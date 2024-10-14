@@ -11,6 +11,7 @@ import {
 import { InputProps } from "@/types/types.config";
 import { FORM_DATA } from "@/data/static";
 import Loader from "../ui/Loader";
+import { sendMessageToTelegram } from "@/lib/utils";
 
 interface FormField {
   firstName: string;
@@ -73,11 +74,29 @@ const ContactMeForm = ({ onClose }: { onClose: () => void }) => {
         }),
       });
 
+      if (!response.ok) {
+        const result = await response.json();
+        console.error("Ошибка при добавлении пользователя:", result.error);
+        alert("Ошибка при добавлении пользователя");
+        return; // Завершаем выполнение, если ошибка
+      }
+
       const result = await response.json();
 
       if (response.ok) {
         console.log("Пользователь успешно добавлен:", result);
         alert("Пользователь успешно добавлен!"); // Уведомление об успешной отправке формы
+
+        // Отправляем сообщение в Telegram после успешного добавления
+        await sendMessageToTelegram({
+          first_name: data.firstName,
+          last_name: data.secondName,
+          phone_number: data.phoneNumber,
+          email: data.email,
+          description: data.description,
+          consent_to_data_processing: data.privacyConsent,
+        });
+
         onClose(); // Закрыть форму после успешной отправки
       } else {
         console.error("Ошибка при добавлении пользователя:", result.error);
@@ -220,8 +239,15 @@ const ContactMeForm = ({ onClose }: { onClose: () => void }) => {
         )}
       </div>
 
+      {loading && (
+        <div className="-z-1 absolute inset-0 rounded-2xl bg-black-600/50" />
+      )}
+
       {loading ? (
-        <Loader className="bottom-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+        <Loader
+          className="z-100 bg-black-300"
+          childrenClassName="bg-yellow z-100"
+        />
       ) : (
         <button className="w-full rounded-xl bg-black-500 py-3 text-white hover:bg-black-300 hover:text-yellow focus:outline-none focus:ring-1 focus:ring-white/10">
           Отправить заявку

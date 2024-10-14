@@ -24,6 +24,7 @@ import { IconCommand } from "@tabler/icons-react";
 import { IconCaretLeftFilled } from "@tabler/icons-react";
 import { IconCaretDownFilled } from "@tabler/icons-react";
 import CompetencesGrid from "../Grids/CompetencesGrid";
+import { useWindowWidth } from "@/context/WindowWidthProvider";
 
 const MacbookScroll = ({
   src,
@@ -43,16 +44,19 @@ const MacbookScroll = ({
   });
 
   const [viewPortSize, setViewPortSize] = useState("");
+  const width = useWindowWidth();
 
   useEffect(() => {
-    if (window && window.innerWidth < 768) {
+    if (width && width < 768) {
       setViewPortSize("sm");
-    } else if (window.innerWidth >= 768 && window.innerWidth < 1024) {
+    } else if (width && width >= 768 && width && width < 1024) {
       setViewPortSize("md");
-    } else if (window.innerWidth >= 1024 && window.innerWidth < 1280) {
+    } else if (width && width >= 1024 && width && width < 1280) {
       setViewPortSize("lg");
+    } else if (width && width >= 1280) {
+      setViewPortSize("xl");
     }
-  }, []);
+  }, [width]);
 
   const scaleX = useTransform(
     scrollYProgress,
@@ -64,7 +68,7 @@ const MacbookScroll = ({
         : viewPortSize === "md"
           ? 1.2
           : viewPortSize === "lg"
-            ? 1.35
+            ? 1.3
             : 1.5,
     ],
   );

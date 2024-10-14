@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 import Reveal from "../../components/Animations/Reveal";
 import { TracingBeam } from "../../components/ui/TracingBeam";
 import useWindowSize from "@/hooks/useWindowSize";
+import { useWindowWidth } from "@/context/WindowWidthProvider";
 
 const AboutMe = () => {
   const [position, setPosition] = useState("");
@@ -24,7 +25,8 @@ const AboutMe = () => {
     visible: { opacity: 1, y: 0 },
   };
 
-  const { width = window?.innerWidth } = useWindowSize();
+  const width = useWindowWidth();
+  // const { width = window?.innerWidth } = useWindowSize();
 
   return (
     <section className="h-max w-screen overflow-hidden bg-black-500 max-sm:pb-10">
