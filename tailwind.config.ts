@@ -18,6 +18,7 @@ const config: Config = {
       center: true,
       padding: "20px",
     },
+
     extend: {
       colors: {
         black: {

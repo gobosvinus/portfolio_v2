@@ -1,3 +1,4 @@
+import useWindowSize from "@/hooks/useWindowSize";
 import React, { ReactNode } from "react";
 import { createPortal } from "react-dom";
 const ContactMeModal = ({
@@ -10,6 +11,7 @@ const ContactMeModal = ({
   children: ReactNode;
 }) => {
   if (!isOpen) return null;
+  const { height } = useWindowSize();
 
   return createPortal(
     <div
@@ -18,7 +20,7 @@ const ContactMeModal = ({
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="h-[60%] min-w-[20%] max-w-[500px] max-sm:h-[90vh] max-sm:w-[90%]"
+        className={`${height && height < 1000 ? "h-[80vh]" : "h-[60vh]"} min-w-[20%] max-w-[500px] max-sm:h-[90vh] max-sm:w-[90%]`}
       >
         {children}
       </div>

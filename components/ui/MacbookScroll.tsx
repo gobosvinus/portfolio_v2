@@ -25,6 +25,7 @@ import { IconCaretLeftFilled } from "@tabler/icons-react";
 import { IconCaretDownFilled } from "@tabler/icons-react";
 import CompetencesGrid from "../Grids/CompetencesGrid";
 import { useWindowWidth } from "@/context/WindowWidthProvider";
+import useWindowSize from "@/hooks/useWindowSize";
 
 const MacbookScroll = ({
   src,
@@ -86,7 +87,18 @@ const MacbookScroll = ({
             : 1.5,
     ],
   );
-  const translate = useTransform(scrollYProgress, [0, 0.5, 1], [0, 700, 400]);
+
+  const { height } = useWindowSize();
+
+  const translate = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    [
+      0,
+      height && height < 1000 ? 150 : 700,
+      height && height < 1000 ? -50 : 400,
+    ],
+  );
   const rotate = useTransform(scrollYProgress, [0.1, 0.12, 0.3], [-28, -28, 0]);
   const textTransform = useTransform(scrollYProgress, [0, 0.3], [0, 100]);
   const textOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);

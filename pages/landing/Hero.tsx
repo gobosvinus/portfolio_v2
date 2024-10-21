@@ -25,7 +25,7 @@ const Hero = () => {
 
   return (
     <div
-      className="relative h-screen w-screen overflow-hidden"
+      className="relative h-max min-h-screen w-screen overflow-hidden"
       style={{
         boxShadow: "0 50px 75px -12px rgb(0 0 0 / 0.25)",
       }}
@@ -58,7 +58,8 @@ const Hero = () => {
             initial={{ y: -40, opacity: 0, scale: 1.05 }}
             animate={{ y: 0, opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
-            className="z-10 flex flex-col md:mt-[288px] lg:mt-[388px]"
+            // было lg:mt-[288px]
+            className="z-10 flex flex-col md:mt-[288px] lg:mt-[32vh]"
             style={{
               translateY: translate,
               position: "relative",
@@ -98,7 +99,8 @@ const Hero = () => {
             initial={{ y: -200, scale: 1.1 }}
             animate={{ y: 0, scale: 1 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
-            className="pointer-events-auto block max-sm:hidden max-sm:self-center md:mt-[238px] lg:mt-[288px]"
+            // было lg:mt-[288px]
+            className="pointer-events-auto block pb-20 max-sm:hidden max-sm:self-center md:mt-[238px] lg:mt-[18vh]"
             style={{
               y,
             }}

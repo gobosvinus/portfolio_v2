@@ -32,7 +32,7 @@ const NavbarFinal = ({ classNames }: { classNames?: string }) => {
             return { ...prev, opacity: 0 };
           })
         }
-        className="pointer-events-auto relative flex gap-5 font-secondary"
+        className="z-200 pointer-events-auto relative flex gap-5 font-secondary"
       >
         {NAVBAR_DATA.map((element) => {
           return (

@@ -16,7 +16,7 @@ const OutlineButton = ({
       onClick={onClick}
       {...rest}
       className={twMerge(
-        "group relative px-4 py-2 font-medium text-white transition-all duration-[400ms] hover:scale-105 hover:text-yellow",
+        "z-150 group relative px-4 py-2 font-medium text-white transition-all duration-[400ms] hover:scale-105 hover:text-yellow",
         className,
       )}
     >

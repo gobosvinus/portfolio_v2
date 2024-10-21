@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, use } from "react";
 import { motion, useInView } from "framer-motion";
 import Reveal from "../../components/Animations/Reveal";
 import { TracingBeam } from "../../components/ui/TracingBeam";
-import useWindowSize from "@/hooks/useWindowSize";
+
 import { useWindowWidth } from "@/context/WindowWidthProvider";
 
 const AboutMe = () => {
@@ -26,12 +26,11 @@ const AboutMe = () => {
   };
 
   const width = useWindowWidth();
-  // const { width = window?.innerWidth } = useWindowSize();
 
   return (
     <section className="h-max w-screen overflow-hidden bg-black-500 max-sm:pb-10">
       <div className="container h-full">
-        {width && width < 768 ? (
+        {width !== undefined && width < 768 ? (
           <TracingBeam>
             <div className="">
               <motion.h2
