@@ -10,6 +10,7 @@ import {
 
 import TinderCards from "@/components/Cards/TinderCards";
 import ServiceCardsGrid from "@/components/Grids/ServiceCardsGrid";
+import { useWindowWidth } from "@/context/WindowWidthProvider";
 
 const Services = () => {
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -35,13 +36,14 @@ const Services = () => {
   });
 
   const y = useTransform(progress, [0.5, 1], ["0", "-50%"]);
+  const width = useWindowWidth();
 
   return (
     <section className="min-h-[110vh] w-screen overflow-hidden bg-black-400">
       <motion.div
-        className="container relative h-full"
+        className="container relative h-full w-full"
         style={{
-          y,
+          translateY: width && width >= 768 ? y : undefined,
         }}
       >
         <h2 className="top-0 pb-20 pt-20 text-4xl">Услуги</h2>

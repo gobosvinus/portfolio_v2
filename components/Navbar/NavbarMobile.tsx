@@ -107,7 +107,7 @@ const Tab = ({
       {/* Стрелочка с анимацией */}
       <MdOutlineArrowBackIos
         onClick={() => handleSelected(element.id)}
-        className={`${selected === element.id ? "rotate-90" : "-rotate-90"} text-white transition-transform duration-200`}
+        className={`${selected === element.id ? "rotate-90" : "-rotate-90"} text-white transition-transform duration-700`}
       />
     </div>
   );
@@ -157,7 +157,7 @@ const ContactTab = () => {
 // Надпись меню
 const MenuTab = () => {
   return (
-    <div className="flex justify-between py-10">
+    <div className="flex justify-between py-12">
       <div className="text-2xl">Меню</div>
     </div>
   );

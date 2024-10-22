@@ -35,8 +35,8 @@ const config: Config = {
       },
       fontSize: {},
       fontFamily: {
-        main: ["var(--font-unbounded)"],
-        secondary: ["var(--font-roboto)"],
+        main: ["var(--font-main)"],
+        secondary: ["var(--font-rob)"],
       },
     },
   },

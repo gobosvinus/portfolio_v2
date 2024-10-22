@@ -9,7 +9,7 @@ const PhoneContact = () => {
   const width = useWindowWidth();
 
   return (
-    <section className="min-h-[80vh] w-screen overflow-y-hidden bg-black-500 max-sm:py-10 md:h-[70vh]">
+    <section className="min-h-[80vh] w-screen overflow-y-hidden bg-black-500 max-sm:py-10 lg:h-max lg:py-40">
       <div className="container grid h-full place-items-center" ref={ref}>
         <Reveal coveringBox={false} delay={0} width={width}>
           <motion.div drag dragConstraints={ref} dragSnapToOrigin>

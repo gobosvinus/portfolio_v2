@@ -45,7 +45,14 @@ const TiltCard = ({
         style={{ transform: "translateZ(75px)", transformStyle: "preserve-3d" }}
         className="absolute inset-3 grid place-content-center rounded-xl bg-white shadow-lg"
       >
-        <Image src={src} fill quality={100} alt="Vlad's photo" />
+        <Image
+          src={src}
+          fill
+          quality={100}
+          alt="Vlad's photo"
+          priority
+          sizes="50vw"
+        />
       </div>
     </motion.div>
   );

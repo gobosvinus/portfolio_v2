@@ -27,22 +27,24 @@ const Header = () => {
       initial={{ y: -200 }}
       animate={{ y: 0 }}
       transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
-      className="container pointer-events-none absolute left-0 right-0 top-10 z-50 grid grid-cols-3 items-center overflow-hidden py-0 text-xl text-white max-sm:grid-cols-2"
+      className="container pointer-events-none fixed left-0 right-0 top-10 z-50 grid grid-cols-3 items-center overflow-hidden py-0 text-xl text-white max-sm:grid-cols-2"
     >
-      <Logo />
+      <div className="self-center pt-2">
+        <Logo />
+      </div>
 
-      <NavbarFinal classNames="fixed z-50" />
+      <NavbarFinal classNames="place-self-center" />
 
       <AnimatePresence>
         {isMobileMenueShown && (
           <NavbarMobile
-            classNames="fixed z-50 top-0 left-0 w-full min-h-max"
+            classNames="fixed z-45 left-0 right-0 top-0"
             handleShowMenu={handleShowMenu}
           />
         )}
       </AnimatePresence>
 
-      <div className="pointer-events-auto fixed z-50 place-self-end self-center max-sm:right-[20px]">
+      <div className="pointer-events-auto place-self-end self-stretch max-sm:right-[20px]">
         <MobileMenuButton
           showMenu={handleShowMenu}
           isMenueShown={isMobileMenueShown}
@@ -70,9 +72,9 @@ export default Header;
 export const Logo = () => {
   return (
     <Link href={"/"} className="">
-      <p className="pointer-events-auto font-main text-lg font-bold md:text-xs lg:text-[18px] xl:text-2xl">
-        <span className="text-white">Владислав </span>
-        <span className="text-yellow mix-blend-difference">Беденко</span>
+      <p className="pointer-events-auto font-main text-4xl">
+        <span className="text-white">В</span>
+        <span className="text-yellow mix-blend-difference">Б</span>
       </p>
     </Link>
   );

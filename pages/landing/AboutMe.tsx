@@ -30,16 +30,19 @@ const AboutMe = () => {
   return (
     <section className="h-max w-screen overflow-hidden bg-black-500 max-sm:pb-10">
       <div className="container h-full">
-        {width !== undefined && width < 768 ? (
+        {width && width < 768 ? (
           <TracingBeam>
             <div className="">
               <motion.h2
                 variants={variants}
                 initial="hidden"
-                animate={isInView ? "visible" : "hidden"}
+                whileInView="visible"
                 transition={{ duration: 1, ease: "easeIn" }}
-                ref={ref}
-                className="z-500 relative pt-20 text-4xl text-white"
+                className="pt-20 font-main text-4xl text-white"
+                style={{
+                  position: "relative",
+                  zIndex: "100",
+                }}
               >
                 Обо мне
               </motion.h2>
@@ -195,7 +198,10 @@ const AboutMe = () => {
             </div>
 
             <div className="mt-20 flex flex-col gap-11 font-secondary text-2xl font-normal max-sm:mt-16">
-              <Reveal coveringBox={width < 768 ? false : true} width={width}>
+              <Reveal
+                coveringBox={width && width < 768 ? false : true}
+                width={width}
+              >
                 <p>
                   Моя страсть — создавать{" "}
                   <span className="font-main text-yellow">
@@ -203,7 +209,10 @@ const AboutMe = () => {
                   </span>
                 </p>
               </Reveal>
-              <Reveal coveringBox={width < 768 ? false : true} width={width}>
+              <Reveal
+                coveringBox={width && width < 768 ? false : true}
+                width={width}
+              >
                 <p>
                   Я обладаю глубоким пониманием таких фреймворков и<br />{" "}
                   инструментов, как
@@ -213,7 +222,10 @@ const AboutMe = () => {
                   </span>
                 </p>
               </Reveal>
-              <Reveal coveringBox={width < 768 ? false : true} width={width}>
+              <Reveal
+                coveringBox={width && width < 768 ? false : true}
+                width={width}
+              >
                 <p className="md:ml-20">
                   Мои знания и навыки не ограничиваются техническими аспектами.
                   <br />
@@ -230,7 +242,10 @@ const AboutMe = () => {
                   быстро адаптироваться к новым задачам.
                 </p>
               </Reveal>
-              <Reveal coveringBox={width < 768 ? false : true} width={width}>
+              <Reveal
+                coveringBox={width && width < 768 ? false : true}
+                width={width}
+              >
                 <p className="md:ml-40">
                   Я открыт к новым вызовам и готов вкладывать все свои знания
                   <br /> и опыт в проекты, чтобы создавать{" "}
@@ -238,7 +253,7 @@ const AboutMe = () => {
                     качественные и востребованные решения.
                     <br />
                   </span>{" "}
-                  Рад буду внести свой вклад в вашу команду или проект!
+                  Буду рад внести свой вклад в вашу команду или проект!
                 </p>
               </Reveal>
             </div>

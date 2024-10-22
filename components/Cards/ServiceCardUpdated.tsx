@@ -48,6 +48,8 @@ const ServiceCardUpdated = ({
         alt="Placeholder alt"
         fill
         style={{ objectFit: "cover" }}
+        sizes="95vw"
+        unoptimized={id === 3 ? true : undefined}
       />
 
       {id === 2 && <Loader />}

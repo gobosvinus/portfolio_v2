@@ -3,6 +3,7 @@ import { MotionValue, motion, useTransform } from "framer-motion";
 import React from "react";
 import { twMerge } from "tailwind-merge";
 import ServiceCardUpdated from "../Cards/ServiceCardUpdated";
+import { useWindowWidth } from "@/context/WindowWidthProvider";
 
 const ServiceCardsGrid = ({
   targetRef,
@@ -23,11 +24,13 @@ const ServiceCardsGrid = ({
 
   const cardShifts = ["-100%", "-200%", "-300%", "-400%"];
 
+  const width = useWindowWidth();
+
   return (
     <motion.div
       ref={targetRef}
       className={twMerge(
-        `max-md:grid-cols- sticky top-40 mb-20 h-[calc(100vh*0.8)] w-full grid-cols-4 bg-transparent`,
+        `sticky top-40 mb-20 min-h-[90vh] w-full grid-cols-4 bg-transparent`,
         classNames,
       )}
     >

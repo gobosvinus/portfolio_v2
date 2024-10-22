@@ -100,7 +100,7 @@ const Hero = () => {
             animate={{ y: 0, scale: 1 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
             // было lg:mt-[288px]
-            className="pointer-events-auto block pb-20 max-sm:hidden max-sm:self-center md:mt-[238px] lg:mt-[18vh]"
+            className="pointer-events-auto relative block pb-20 max-sm:hidden max-sm:self-center md:mt-[238px] lg:mt-[18vh]"
             style={{
               y,
             }}

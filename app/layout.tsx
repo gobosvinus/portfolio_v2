@@ -6,12 +6,13 @@ import Footer from "@/layout/Footer";
 
 const unbounded = Unbounded({
   subsets: ["latin", "cyrillic"],
-  variable: "--font-unbounded",
+  variable: "--font-main",
+  weight: ["200", "300", "400", "500", "700", "900"],
 });
 
 const roboto = Roboto({
   subsets: ["latin", "cyrillic"],
-  variable: "--font-roboto",
+  variable: "--font-rob",
   weight: ["100", "300", "400", "500", "700", "900"],
 });
 
