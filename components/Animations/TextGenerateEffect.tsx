@@ -31,7 +31,7 @@ const TextGenerateEffect = ({
         delay: stagger(0.2, { startDelay: delay }), // Используем delay для всей анимации
       },
     );
-  }, [scope.current, delay]);
+  }, [scope.current, delay, filter, animate]);
 
   const renderWords = () => {
     return (
