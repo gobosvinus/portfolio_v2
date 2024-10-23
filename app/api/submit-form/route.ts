@@ -44,7 +44,7 @@ export async function POST(request: Request) {
       { message: "Пользователь успешно добавлен", user: newUser },
       { status: 200 },
     );
-  } catch (error) {
+  } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   } finally {
     // Очищаем ресурсы Prisma Client

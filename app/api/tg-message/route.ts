@@ -60,7 +60,7 @@ Email: ${email}
       { message: "Сообщение успешно отправлено в Telegram" },
       { status: 200 },
     );
-  } catch (error) {
+  } catch (error: any) {
     // Обработка ошибок
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
