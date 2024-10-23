@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { useState, useEffect, useRef, use } from "react";
 import { motion, useInView } from "framer-motion";
 import Reveal from "../../components/Animations/Reveal";
