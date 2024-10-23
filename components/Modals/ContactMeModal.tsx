@@ -10,8 +10,8 @@ const ContactMeModal = ({
   onClose: () => void;
   children: ReactNode;
 }) => {
-  const { height } = useWindowSize();
   if (!isOpen) return null;
+  const { height } = useWindowSize();
 
   return createPortal(
     <div
