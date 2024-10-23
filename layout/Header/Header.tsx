@@ -27,9 +27,9 @@ const Header = () => {
       initial={{ y: -200 }}
       animate={{ y: 0 }}
       transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
-      className="container pointer-events-none fixed left-0 right-0 top-10 z-50 grid grid-cols-3 items-center overflow-hidden py-0 text-xl text-white max-sm:grid-cols-2"
+      className="container pointer-events-none fixed left-0 right-0 top-10 z-50 grid h-max grid-cols-3 items-center py-0 text-xl text-white max-sm:grid-cols-2"
     >
-      <div className="self-center pt-2">
+      <div className="self-stretch pt-2">
         <Logo />
       </div>
 
@@ -38,7 +38,7 @@ const Header = () => {
       <AnimatePresence>
         {isMobileMenueShown && (
           <NavbarMobile
-            classNames="fixed z-45 left-0 right-0 top-0"
+            classNames="absolute z-100 left-0 right-0 -top-10"
             handleShowMenu={handleShowMenu}
           />
         )}
