@@ -6,7 +6,7 @@ import Hero from "@/pages/landing/Hero";
 import PhoneContact from "@/pages/landing/PhoneContact";
 import Services from "@/pages/landing/Services";
 
-import { ReactLenis } from "@studio-freight/react-lenis";
+import { ReactLenis } from "lenis/react";
 import { WindowWidthProvider } from "@/context/WindowWidthProvider";
 
 export default function Home() {

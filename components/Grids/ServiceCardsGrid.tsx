@@ -3,7 +3,6 @@ import { MotionValue, motion, useTransform } from "framer-motion";
 import React from "react";
 import { twMerge } from "tailwind-merge";
 import ServiceCardUpdated from "../Cards/ServiceCardUpdated";
-import { useWindowWidth } from "@/context/WindowWidthProvider";
 
 const ServiceCardsGrid = ({
   targetRef,
@@ -23,8 +22,6 @@ const ServiceCardsGrid = ({
   const x4 = useTransform(progress, [0, 0.4], ["-400%", "0%"]);
 
   const cardShifts = ["-100%", "-200%", "-300%", "-400%"];
-
-  const width = useWindowWidth();
 
   return (
     <motion.div

@@ -85,7 +85,7 @@ const Hero = () => {
               />
 
               <TextGenerateEffect
-                words="а сейчас пока сделаю мелким шрифтом"
+                words="с использованием новейших технологий"
                 filter={false}
                 duration={2}
                 className="font-secondary text-sm text-white opacity-60"
@@ -96,8 +96,8 @@ const Hero = () => {
 
           <motion.div
             ref={myPhotoRef}
-            initial={{ y: -200, scale: 1.1 }}
-            animate={{ y: 0, scale: 1 }}
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
             // было lg:mt-[288px]
             className="pointer-events-auto relative block pb-20 max-sm:hidden max-sm:self-center md:mt-[238px] lg:mt-[18vh]"
@@ -105,7 +105,7 @@ const Hero = () => {
               y,
             }}
           >
-            {/* Можно передатать в TiltCard classNames */}
+            {/* Можно передать в TiltCard classNames */}
             <TiltCard src="/assets/me.png" />
           </motion.div>
         </div>
@@ -114,6 +114,6 @@ const Hero = () => {
   );
 };
 
-const full_text = "Какое-то описание о себе, которое я потом заменю,";
+const full_text = "Специализируюсь на создании современных веб-приложений";
 
 export default Hero;
