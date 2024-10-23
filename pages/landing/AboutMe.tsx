@@ -49,7 +49,10 @@ const AboutMe = () => {
 
               {/* Я студент мобильная версия */}
               <div className="md:hidden">
-                <Reveal coveringBox={width < 768 ? false : true} width={width}>
+                <Reveal
+                  coveringBox={width && width < 768 ? false : true}
+                  width={width}
+                >
                   <p className="mt-20 font-secondary text-2xl">
                     Меня зовут Владислав, я студент Иркутского Политехнического
                     Университета, где обучаюсь на англоязычной программе <br />
@@ -61,7 +64,10 @@ const AboutMe = () => {
               </div>
 
               <div className="mt-20 flex flex-col gap-11 font-secondary text-2xl font-normal max-sm:mt-16">
-                <Reveal coveringBox={width < 768 ? false : true} width={width}>
+                <Reveal
+                  coveringBox={width && width < 768 ? false : true}
+                  width={width}
+                >
                   <p>
                     Моя страсть — создавать{" "}
                     <span className="font-main text-yellow">
@@ -69,7 +75,10 @@ const AboutMe = () => {
                     </span>
                   </p>
                 </Reveal>
-                <Reveal coveringBox={width < 768 ? false : true} width={width}>
+                <Reveal
+                  coveringBox={width && width < 768 ? false : true}
+                  width={width}
+                >
                   <p>
                     Я обладаю глубоким пониманием таких фреймворков и
                     инструментов, как
@@ -80,7 +89,10 @@ const AboutMe = () => {
                     </span>{" "}
                   </p>
                 </Reveal>
-                <Reveal coveringBox={width < 768 ? false : true} width={width}>
+                <Reveal
+                  coveringBox={width && width < 768 ? false : true}
+                  width={width}
+                >
                   <p className="md:ml-20">
                     Мои знания и навыки не ограничиваются техническими
                     аспектами.
@@ -98,7 +110,10 @@ const AboutMe = () => {
                     быстро адаптироваться к новым задачам.
                   </p>
                 </Reveal>
-                <Reveal coveringBox={width < 768 ? false : true} width={width}>
+                <Reveal
+                  coveringBox={width && width < 768 ? false : true}
+                  width={width}
+                >
                   <p className="md:ml-40">
                     Я открыт к новым вызовам и готов вкладывать все свои знания
                     <br /> и опыт в проекты, чтобы создавать{" "}
