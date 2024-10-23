@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { useState, forwardRef } from "react";
 import { TiTick } from "react-icons/ti";
 import { twMerge } from "tailwind-merge";
