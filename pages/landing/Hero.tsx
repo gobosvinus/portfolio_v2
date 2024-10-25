@@ -3,6 +3,7 @@ import TileBackground from "@/components/ui/TileBackground";
 import TiltCard from "@/components/Cards/TiltCard";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import TextGenerateEffect from "@/components/Animations/TextGenerateEffect";
+import { useWindowWidth } from "@/context/WindowWidthProvider";
 
 const Hero = () => {
   const myPhotoRef = useRef(null);

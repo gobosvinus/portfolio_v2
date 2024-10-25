@@ -47,6 +47,10 @@ const MacbookScroll = ({
   const [viewPortSize, setViewPortSize] = useState("");
   const width = useWindowWidth();
 
+  if (width === null) {
+    return null; // или показать loader/заглушку
+  }
+
   useEffect(() => {
     if (width && width < 768) {
       setViewPortSize("sm");

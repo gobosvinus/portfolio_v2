@@ -11,6 +11,10 @@ const CompetencesGrid = () => {
   // const { width } = useWindowSize();
   const width = useWindowWidth();
 
+  if (width === null) {
+    return null; // или показать loader/заглушку
+  }
+
   const variantsLeft = {
     initial: {
       left: "50%",

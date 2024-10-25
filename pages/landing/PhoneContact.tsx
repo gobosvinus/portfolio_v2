@@ -8,6 +8,10 @@ const PhoneContact = () => {
   const ref = useRef(null);
   const width = useWindowWidth();
 
+  if (width === null) {
+    return null; // или показать loader/заглушку
+  }
+
   return (
     <section className="min-h-[80vh] w-screen overflow-y-hidden bg-black-500 max-sm:py-10 lg:h-max lg:py-40">
       <div className="container grid h-full place-items-center" ref={ref}>

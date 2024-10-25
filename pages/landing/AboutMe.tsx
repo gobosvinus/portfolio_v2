@@ -1,11 +1,10 @@
-// @ts-nocheck
-
 import React, { useState, useEffect, useRef, use } from "react";
 import { motion, useInView } from "framer-motion";
 import Reveal from "../../components/Animations/Reveal";
 import { TracingBeam } from "../../components/ui/TracingBeam";
 
 import { useWindowWidth } from "@/context/WindowWidthProvider";
+import Loader from "@/components/ui/Loader";
 
 const AboutMe = () => {
   const [position, setPosition] = useState("");
@@ -28,6 +27,10 @@ const AboutMe = () => {
   };
 
   const width = useWindowWidth();
+
+  if (width === null) {
+    return null; // или показать loader/заглушку
+  }
 
   return (
     <section className="h-max w-screen overflow-hidden bg-black-500 max-sm:pb-10">

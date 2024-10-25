@@ -36,6 +36,10 @@ const ServiceCardUpdated = ({
   };
   const width = useWindowWidth();
 
+  if (width === null) {
+    return null; // или показать loader/заглушку
+  }
+
   return (
     <div
       className={`relative h-full overflow-hidden bg-transparent hover:cursor-pointer ${selected ? "z-50" : "z-5"}`}

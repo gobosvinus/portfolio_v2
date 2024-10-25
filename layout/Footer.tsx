@@ -12,7 +12,7 @@ import { FaAngleDoubleUp } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="min-h-max w-screen overflow-hidden bg-black-400 font-secondary text-white max-sm:relative">
+    <footer className="max-h-max w-screen overflow-hidden bg-black-400 font-secondary text-white max-sm:relative">
       <div className="container flex h-full flex-col justify-between">
         <div className="flex items-start justify-between max-sm:flex-col max-sm:gap-2">
           {FOOTER_DATA.map((block, index) => {

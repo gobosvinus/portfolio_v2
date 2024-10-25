@@ -38,6 +38,10 @@ const Services = () => {
   const y = useTransform(progress, [0.5, 1], ["0", "-50%"]);
   const width = useWindowWidth();
 
+  if (width === null) {
+    return null; // или показать loader/заглушку
+  }
+
   return (
     <section className="min-h-[110vh] w-screen overflow-hidden bg-black-400">
       <motion.div

@@ -20,6 +20,10 @@ const TileBackground = ({
   const { height } = useWindowSize();
   const width = useWindowWidth();
 
+  if (width === null) {
+    return null; // или показать loader/заглушку
+  }
+
   // get number of cols and rows and then the amount of recs
   const cols = width ? Math.floor(width / REC_SIZE) : 0;
   const rows = height ? Math.floor(height / REC_SIZE) : 0;

@@ -1,17 +1,17 @@
 "use client";
 
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import useWindowSize from "@/hooks/useWindowSize";
 
 // Создаем типы для значения контекста
 interface WindowWidthContextProps {
-  width: number | undefined;
+  width: number | null;
 }
 
 // Создаем сам контекст
-const WindowWidthContext = createContext<WindowWidthContextProps | undefined>(
-  undefined,
-);
+const WindowWidthContext = createContext<WindowWidthContextProps>({
+  width: null,
+});
 
 // Провайдер, который использует хук useWindowSize
 export const WindowWidthProvider = ({
@@ -19,26 +19,33 @@ export const WindowWidthProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
+  const [mounted, setMounted] = useState(false);
   const { width } = useWindowSize();
 
-  // Значение, которое будет доступно через контекст
-  const value = {
-    width,
-  };
+  // Добавляем эффект для проверки монтирования на клиенте
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Не рендерим контент, пока компонент не смонтирован на клиенте
+  if (!mounted) {
+    return null; // или можно вернуть заглушку/loader
+  }
 
   return (
-    <WindowWidthContext.Provider value={value}>
+    <WindowWidthContext.Provider value={{ width: width ?? null }}>
       {children}
     </WindowWidthContext.Provider>
   );
 };
 
-// Кастомный хук для удобного получения ширины
-export const useWindowWidth = (): number | undefined => {
+export const useWindowWidth = () => {
   const context = useContext(WindowWidthContext);
 
-  if (context === undefined) {
-    throw new Error("useWindowWidth must be used within a WindowWidthProvider");
+  if (!context) {
+    throw new Error(
+      "useWindowWidth должен использоваться внутри WindowWidthProvider",
+    );
   }
 
   return context.width;
