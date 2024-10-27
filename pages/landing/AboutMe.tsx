@@ -46,7 +46,7 @@ const AboutMe = () => {
                 className="pt-20 font-main text-4xl text-white"
                 style={{
                   position: "relative",
-                  zIndex: "100",
+                  zIndex: "45",
                 }}
               >
                 Обо мне

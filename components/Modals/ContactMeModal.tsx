@@ -15,12 +15,12 @@ const ContactMeModal = ({
 
   return createPortal(
     <div
-      className="fixed top-0 z-50 grid size-full place-items-center backdrop-blur-md backdrop-brightness-75 backdrop-filter"
+      className="fixed top-0 z-[100] grid size-full place-items-center overflow-y-scroll backdrop-blur-md backdrop-brightness-75 backdrop-filter"
       onClick={onClose}
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`${height && height < 1000 ? "h-[80vh]" : "h-[60vh]"} min-w-[20%] max-w-[500px] max-sm:h-[90vh] max-sm:w-[90%]`}
+        className={`${height && height < 1000 ? "h-[80vh]" : "h-[60vh]"} min-w-[20%] max-w-[500px] max-sm:min-h-[90vh] max-sm:w-[90%]`}
       >
         {children}
       </div>

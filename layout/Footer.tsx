@@ -3,12 +3,13 @@
 import { FOOTER_DATA } from "@/data/static";
 import { FooterBlock as FooterBlockType } from "@/types/types.config";
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, spring } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 import { TiTick } from "react-icons/ti";
 import { FiCopy } from "react-icons/fi";
 import Link from "next/link";
 import { FaAngleDoubleUp } from "react-icons/fa";
+import Image from "next/image";
 
 const Footer = () => {
   return (

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import {
   motion,
@@ -6,11 +6,14 @@ import {
   useScroll,
   useTransform,
   useSpring,
+  useInView,
 } from "framer-motion";
 
 import TinderCards from "@/components/Cards/TinderCards";
 import ServiceCardsGrid from "@/components/Grids/ServiceCardsGrid";
 import { useWindowWidth } from "@/context/WindowWidthProvider";
+import Image from "next/image";
+import AnimatedTip from "@/components/Animations/AnimatedTip";
 
 const Services = () => {
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -38,12 +41,19 @@ const Services = () => {
   const y = useTransform(progress, [0.5, 1], ["0", "-50%"]);
   const width = useWindowWidth();
 
+  const sectionRef = useRef(null);
+
+  const isInView = useInView(sectionRef, { once: true, amount: 0.5 });
+
   if (width === null) {
     return null; // или показать loader/заглушку
   }
 
   return (
-    <section className="min-h-[110vh] w-screen overflow-hidden bg-black-400">
+    <section
+      className="min-h-[110vh] w-screen overflow-hidden bg-black-400"
+      ref={sectionRef}
+    >
       <motion.div
         className="container relative h-full w-full"
         style={{
@@ -61,6 +71,9 @@ const Services = () => {
 
         {/* На мобильных устройствах */}
         <TinderCards />
+
+        {/* Анимация-Подсказка. Срабатывает один раз */}
+        <AnimatedTip isInView={isInView} />
       </motion.div>
     </section>
   );

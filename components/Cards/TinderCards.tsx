@@ -27,7 +27,7 @@ const TinderCards = () => {
 
   return (
     // "absolute left-1/2 top-[55%] grid h-max min-h-full w-full -translate-x-1/2 -translate-y-1/2 place-items-center md:hidden"grid h-[950px] w-[400px] place-items-center md:hidden
-    <div className="absolute left-1/2 top-[20%] grid h-max min-h-full w-full -translate-x-1/2 place-items-center md:hidden">
+    <div className="absolute left-1/2 top-[20%] grid h-[110vh] min-h-full w-full -translate-x-1/2 place-items-center md:hidden">
       {cards.map((card) => {
         return (
           <Card

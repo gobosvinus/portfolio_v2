@@ -115,7 +115,7 @@ const ContactMeForm = ({ onClose }: { onClose: () => void }) => {
   return (
     <motion.form
       onSubmit={handleSubmit(onSubmit)}
-      className="relative flex size-full flex-col justify-between rounded-2xl bg-black-400 p-10 font-secondary text-white/70 shadow-xl"
+      className="relative flex min-h-max w-full flex-col justify-between gap-[25px] rounded-2xl bg-black-400 p-10 font-secondary text-white/70 shadow-xl"
       action=""
       method="POST"
       initial={{ y: "100%", opacity: 0 }}
@@ -224,7 +224,7 @@ const ContactMeForm = ({ onClose }: { onClose: () => void }) => {
       <textarea
         placeholder={FORM_DATA[4].placeholder}
         {...register("description")}
-        className="resize-none overflow-hidden rounded-lg bg-black-300 p-2 text-white/70 placeholder:font-secondary placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-white/10"
+        className="min-h-20 resize-none overflow-hidden rounded-lg bg-black-300 p-2 text-white/70 placeholder:font-secondary placeholder:text-white/20 focus:outline-none focus:ring-1 focus:ring-white/10"
       />
 
       {/* Согласие */}
