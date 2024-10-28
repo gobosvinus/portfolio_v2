@@ -1,66 +1,73 @@
-# Базовый образ
 FROM node:20.10-alpine AS base
 
-# Устанавливаем необходимые зависимости
+# Install dependencies only when needed
 FROM base AS deps
+# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-# Устанавливаем зависимости через npm
+# Install dependencies based on the preferred package manager
 COPY package.json package-lock.json* ./
 RUN npm ci
 
-# Dev image для разработки
 FROM base AS dev
+
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Генерация Prisma файлов (если нужно для разработки)
+# Uncomment this if you're using prisma, generates prisma files for linting
 RUN npx prisma generate
 
-# Включение горячей перезагрузки
+#Enables Hot Reloading Check https://github.com/vercel/next.js/issues/36774 for more information
 ENV CHOKIDAR_USEPOLLING=true
 ENV WATCHPACK_POLLING=true
 
-# Сборка проекта для продакшн
+# Rebuild the source code only when needed
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /root/.npm /root/.npm
 COPY . .
 
-# Генерация Prisma файлов для продакшн
+ENV NEXT_TELEMETRY_DISABLED 1
+
+# Uncomment this if you're using prisma, generates prisma files for linting
 RUN npx prisma generate
 
-# Сборка Next.js проекта
 RUN npm run build
 
-# Финальный образ для запуска приложения
+# Production image, copy all the files and run next
 FROM base AS runner
 WORKDIR /app
+
+ENV NEXT_TELEMETRY_DISABLED 1
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/prisma ./prisma
-COPY --from=builder /app/node_modules ./node_modules
 
-# Копируем скомпилированные файлы для Next.js
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
-# Даем права nextjs пользователю на кэш директорию
+# Set the correct permission for prerender cache
 RUN mkdir .next
 RUN chown nextjs:nodejs .next
 
-# Используем пользователя nextjs
+# Automatically leverage output traces to reduce image size
+# https://nextjs.org/docs/advanced-features/output-file-tracing
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+# Uncomment this if you're using prisma, copies prisma files for linting
+COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+
 USER nextjs
 
-# Экспортируем порт
 EXPOSE 3000
+
 ENV PORT 3000
+# set hostname to localhost
 ENV HOSTNAME "0.0.0.0"
 
-# Команда для запуска приложения
+# server.js is created by next build from the standalone output
+# https://nextjs.org/docs/pages/api-reference/next-config-js/output
 CMD ["npm", "run", "start:migrate:prod"]
