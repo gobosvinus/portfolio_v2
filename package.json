@@ -8,6 +8,8 @@
     "postinstall": "prisma generate",
     "start:migrate:prod": "npm run migrate && npm start",
     "docker:dev": "npm run dev",
+    "docker:compose:dev": "docker-compose down && docker compose up -d --build",
+    "docker:compose:prod": "docker-compose down && docker compose -f docker-compose.prod.yml up -d --build",
     "start": "next start",
     "lint": "next lint"
   },
