@@ -3,6 +3,7 @@ import { Unbounded, Roboto } from "next/font/google";
 import "./globals.css";
 import Header from "@/layout/Header/Header";
 import Footer from "@/layout/Footer";
+import Head from "next/head";
 
 const unbounded = Unbounded({
   subsets: ["latin", "cyrillic"],
@@ -19,6 +20,9 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: "Владислав Беденко",
   description: "Владислав Беденко Full-Stack Dev.",
+  icons: {
+    icon: "/assets/favicon.ico",
+  },
 };
 
 export const viewport: Viewport = {
@@ -34,6 +38,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <link
+          rel="apple-touch-icon"
+          href="/apple-touch-icon.png"
+          type="image/png"
+          sizes="57x57"
+        />
+      </Head>
       <body
         className={`${unbounded.variable} ${roboto.variable} zero-pm hide-sb font-sans`}
         style={{
