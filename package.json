@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "postinstall": "prisma generate",
+    "migrate": "prisma migrate deploy",
     "start:migrate:prod": "npm run migrate && npm start",
     "docker:dev": "npm run dev",
     "docker:compose:dev": "docker-compose down && docker compose up -d --build",

@@ -8,6 +8,8 @@ WORKDIR /app
 
 # Устанавливаем зависимости через npm
 COPY package.json package-lock.json* ./
+# Копируем Prisma схему для работы команды prisma generate
+COPY prisma/schema.prisma prisma/schema.prisma
 RUN npm ci
 
 # Dev image для разработки
@@ -51,7 +53,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 # Даем права nextjs пользователю на кэш директорию
-RUN mkdir .next
+# RUN mkdir .next
 RUN chown nextjs:nodejs .next
 
 # Используем пользователя nextjs
