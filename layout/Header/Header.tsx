@@ -33,7 +33,7 @@ const Header = () => {
         <Logo />
       </div>
 
-      <NavbarFinal classNames="place-self-center" />
+      <NavbarFinal classNames="place-self-start mt-2" />
 
       <AnimatePresence>
         {isMobileMenueShown && (
