@@ -23,9 +23,10 @@ const NavbarFinal = ({ classNames }: { classNames?: string }) => {
   return (
     <nav
       className={twMerge(
-        "hidden place-self-center rounded-full border border-black-400 bg-black-500 px-2 py-1 font-normal md:block",
+        "hidden rounded-full border border-black-400 bg-black-500 px-2 py-1 font-normal md:block place-self-start mt-2",
         classNames,
       )}
+    
     >
       <ul
         onMouseLeave={() =>
